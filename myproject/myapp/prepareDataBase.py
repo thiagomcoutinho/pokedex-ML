@@ -14,7 +14,7 @@ def runBic(path):
     cwd = os.getcwd()
     files = [f for f in os.listdir(".") if os.path.isfile(f)]
     for f in files:
-        file_path = "./" + "/1.ppm"
+        file_path = "./" + "1.ppm"
         im = Image.open(str(f))
         im.save(file_path)
 

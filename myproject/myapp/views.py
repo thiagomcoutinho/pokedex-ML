@@ -44,6 +44,9 @@ def list(request):
             elif( predicted == 5.0 ): ## Gengar
                 cleanDataBase(dname)
                 return redirect("http://www.pokemon.com/br/pokedex/gengar")
+            elif( predicted == 6.0 ):
+                cleanDataBase(dname)
+                return render_to_response('unknown.html')
 
             # Redirect to the document list after POST
             return HttpResponseRedirect(reverse('myproject.myapp.views.list'))
