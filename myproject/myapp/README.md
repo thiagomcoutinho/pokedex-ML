@@ -1,7 +1,7 @@
 #myapp
 Custom files in this directory:
 
--features.txt: Text file containing all dataset feature vectors extracted with BIC with the correspondent classes appended at end of vector.
+- features.txt: Text file containing all dataset feature vectors extracted with BIC with the correspondent classes appended at end of vector.
 
 - prepareDataBase.py: Search for the uploaded file, converts it to .ppm extention and rename to '1.ppm' pattern, then extract the
 features with BIC extractor.
