@@ -1,5 +1,6 @@
 def cleanDataBase(path):
     import os
+    os.chdir(path)
     os.chdir('./..')
     os.chdir('./..')
     os.chdir('./media/documents/')

@@ -9,7 +9,9 @@ from myproject.myapp.models import Document
 from myproject.myapp.forms import DocumentForm
 import os
 
-from myproject.myapp.prepareDataBase import runBic
+## Importing custom functions to modify uploaded data and predict class
+from myproject.myapp.prepareDataBase import prepareDataBase
+from myproject.myapp.predictClass import predictClass
 from myproject.myapp.cleanDataBase import cleanDataBase
 
 abspath = os.path.abspath(__file__)
@@ -25,27 +27,22 @@ def list(request):
             newdoc = Document(docfile=request.FILES['docfile'])
             newdoc.save()
 
-            predicted = runBic(dname)
+            prepareDataBase(dname)
+            predicted = predictClass(dname)
+            cleanDataBase(dname)
             if( predicted == 0.0 ): ## Pikachu
-                cleanDataBase(dname)
                 return redirect("http://www.pokemon.com/br/pokedex/pikachu")
             elif( predicted == 1.0 ): ## Charmander
-                cleanDataBase(dname)
                 return redirect("http://www.pokemon.com/br/pokedex/charmander")
             elif( predicted == 2.0 ): ## Squirtle
-                cleanDataBase(dname)
                 return redirect("http://www.pokemon.com/br/pokedex/squirtle")
             elif( predicted == 3.0 ): ## Bulbasaur
-                cleanDataBase(dname)
                 return redirect("http://www.pokemon.com/br/pokedex/bulbasaur")
             elif( predicted == 4.0 ): ## Lugia
-                cleanDataBase(dname)
                 return redirect("http://www.pokemon.com/br/pokedex/lugia")
             elif( predicted == 5.0 ): ## Gengar
-                cleanDataBase(dname)
                 return redirect("http://www.pokemon.com/br/pokedex/gengar")
-            elif( predicted == 6.0 ):
-                cleanDataBase(dname)
+            elif( predicted == 6.0 ): ## Unknwon pokemon
                 return render_to_response('unknown.html')
 
             # Redirect to the document list after POST
